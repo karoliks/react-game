@@ -1,10 +1,8 @@
 import store from "../../config/store";
-import { SPRITE_SIZE } from "../../config/constants";
+import { SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT } from "../../config/constants";
 
 export default function handleMovement(player) {
-  function getNewPosition(direction) {
-    const oldPos = store.getState().player.position;
-
+  function getNewPosition(oldPos, direction) {
     switch (direction) {
       case "WEST":
         return [oldPos[0] - SPRITE_SIZE, oldPos[1]];
@@ -17,26 +15,56 @@ export default function handleMovement(player) {
     }
   }
 
-  function dispatchMove(direction) {
+  //   boolean function to determine whether the sprite is at an edge
+  function observeBoundaries(oldPos, newPos) {
+    return (
+      newPos[0] >= 0 &&
+      newPos[0] <= MAP_WIDTH - SPRITE_SIZE &&
+      newPos[1] >= 0 &&
+      newPos[1] <= MAP_HEIGHT - SPRITE_SIZE
+    );
+  }
+  //   boolean function to determine whether the sprite is trying to pass an object
+  function observeImpassable(oldPos, newPos) {
+    const tiles = store.getState().map.tiles;
+    const y = newPos[1] / SPRITE_SIZE;
+    const x = newPos[0] / SPRITE_SIZE;
+    const nextTile = tiles[y][x];
+    return nextTile < 5;
+  }
+
+  function dispatchMove(newPos) {
     store.dispatch({
       type: "MOVE_PLAYER",
       payload: {
-        position: getNewPosition(direction),
+        position: newPos,
       },
     });
+  }
+
+  function attemtMove(direction) {
+    const oldPos = store.getState().player.position;
+    const newPos = getNewPosition(oldPos, direction);
+
+    if (
+      observeBoundaries(oldPos, newPos) &&
+      observeImpassable(oldPos, newPos)
+    ) {
+      dispatchMove(newPos);
+    }
   }
 
   function handleKeyDown(e) {
     e.preventDefault();
     switch (e.keyCode) {
       case 37:
-        return dispatchMove("WEST");
+        return attemtMove("WEST");
       case 38:
-        return dispatchMove("NORTH");
+        return attemtMove("NORTH");
       case 39:
-        return dispatchMove("EAST");
+        return attemtMove("EAST");
       case 40:
-        return dispatchMove("SOUTH");
+        return attemtMove("SOUTH");
       default:
         console.log(e.keyCode);
     }
