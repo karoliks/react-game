@@ -2,6 +2,7 @@ import store from "../../config/store";
 import { SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT } from "../../config/constants";
 
 export default function handleMovement(player) {
+  // find new position given old position and desired direction
   function getNewPosition(oldPos, direction) {
     switch (direction) {
       case "WEST":
@@ -24,6 +25,26 @@ export default function handleMovement(player) {
       newPos[1] <= MAP_HEIGHT - SPRITE_SIZE
     );
   }
+
+  // find the location to the relevant sprite on the spirte image
+  function getSpriteLocation(direction, walkIndex) {
+    switch (direction) {
+      case "SOUTH":
+        return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 0}px`;
+      case "EAST":
+        return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 1}px`;
+      case "WEST":
+        return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 2}px`;
+      case "NORTH":
+        return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 3}px`;
+    }
+  }
+
+  function getWalkIndex() {
+    const walkIndex = store.getState().player.walkIndex;
+    return walkIndex >= 7 ? 0 : walkIndex + 1;
+  }
+
   //   boolean function to determine whether the sprite is trying to pass an object
   function observeImpassable(oldPos, newPos) {
     const tiles = store.getState().map.tiles;
@@ -33,15 +54,21 @@ export default function handleMovement(player) {
     return nextTile < 5;
   }
 
-  function dispatchMove(newPos) {
+  // Move sprite to desired location
+  function dispatchMove(direction, newPos) {
+    const walkIndex = getWalkIndex();
     store.dispatch({
       type: "MOVE_PLAYER",
       payload: {
         position: newPos,
+        direction: direction,
+        walkIndex: walkIndex,
+        spriteLocation: getSpriteLocation(direction, walkIndex),
       },
     });
   }
 
+  // Check if desired move is possible, and if possible, move the sprite
   function attemtMove(direction) {
     const oldPos = store.getState().player.position;
     const newPos = getNewPosition(oldPos, direction);
@@ -50,10 +77,11 @@ export default function handleMovement(player) {
       observeBoundaries(oldPos, newPos) &&
       observeImpassable(oldPos, newPos)
     ) {
-      dispatchMove(newPos);
+      dispatchMove(direction, newPos);
     }
   }
 
+  // translate keycodes to directions
   function handleKeyDown(e) {
     e.preventDefault();
     switch (e.keyCode) {
