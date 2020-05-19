@@ -1,6 +1,7 @@
 import React from "react";
 import Player from "../player";
 import Map from "../map";
+import SoundButton from "../soundButton";
 
 import { tiles } from "../../data/maps/1";
 import store from "../../config/store";
@@ -13,16 +14,18 @@ function World(props) {
     },
   });
   return (
-    <div
-      style={{
-        position: "relative",
-        width: "800px",
-        height: "400px",
-        margin: "20px auto",
-      }}
-    >
-      <Map />
-      <Player />
+    <div>
+      <div
+        style={{
+          position: "relative",
+          width: "800px",
+          height: "400px",
+          margin: "20px auto",
+        }}
+      >
+        <Map />
+        <Player />
+      </div>
     </div>
   );
 }
