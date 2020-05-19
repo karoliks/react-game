@@ -17,7 +17,7 @@ export default function handleMovement(player) {
   }
 
   //   boolean function to determine whether the sprite is at an edge
-  function observeBoundaries(oldPos, newPos) {
+  function observeBoundaries(newPos) {
     return (
       newPos[0] >= 0 &&
       newPos[0] <= MAP_WIDTH - SPRITE_SIZE &&
@@ -26,7 +26,7 @@ export default function handleMovement(player) {
     );
   }
 
-  // find the location to the relevant sprite on the spirte image
+  // find the location to the relevant sprite on the sprite image
   function getSpriteLocation(direction, walkIndex) {
     switch (direction) {
       case "SOUTH":
@@ -46,7 +46,7 @@ export default function handleMovement(player) {
   }
 
   //   boolean function to determine whether the sprite is trying to pass an object
-  function observeImpassable(oldPos, newPos) {
+  function observeImpassable(newPos) {
     const tiles = store.getState().map.tiles;
     const y = newPos[1] / SPRITE_SIZE;
     const x = newPos[0] / SPRITE_SIZE;
@@ -72,12 +72,42 @@ export default function handleMovement(player) {
   function attemtMove(direction) {
     const oldPos = store.getState().player.position;
     const newPos = getNewPosition(oldPos, direction);
-
-    if (
-      observeBoundaries(oldPos, newPos) &&
-      observeImpassable(oldPos, newPos)
-    ) {
+    if (observeBoundaries(newPos) && observeImpassable(newPos)) {
       dispatchMove(direction, newPos);
+    }
+  }
+
+  function changeWorld() {
+    const oldMapNum = store.getState().world.mapNum;
+
+    store.dispatch({
+      type: "CHANGE_WORLD",
+      payload: {
+        mapNum: (oldMapNum + 1) % 3,
+      },
+    });
+  }
+
+  function openChest() {
+    // TODO
+    return;
+  }
+
+  // check what space means in the current position
+  function handleSpace() {
+    const oldPos = store.getState().player.position;
+    const tiles = store.getState().map.tiles;
+    const y = oldPos[1] / SPRITE_SIZE;
+    const x = oldPos[0] / SPRITE_SIZE;
+    const currentTile = tiles[y][x];
+
+    switch (currentTile) {
+      case 1:
+        changeWorld();
+      case 4:
+        openChest();
+      default:
+        return;
     }
   }
 
@@ -85,6 +115,8 @@ export default function handleMovement(player) {
   function handleKeyDown(e) {
     e.preventDefault();
     switch (e.keyCode) {
+      case 32:
+        return handleSpace();
       case 37:
         return attemtMove("WEST");
       case 38:
