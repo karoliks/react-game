@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import store from "../../config/store";
 
 import Player from "../player";
 import Map from "../map";
@@ -8,8 +9,6 @@ import Modal from "../modal";
 import { tiles0 } from "../../data/maps/0";
 import { tiles1 } from "../../data/maps/1";
 import { tiles2 } from "../../data/maps/2";
-
-import store from "../../config/store";
 
 function World(props) {
   const tiles = [tiles0, tiles1, tiles2];
@@ -28,6 +27,8 @@ function World(props) {
           width: "800px",
           height: "400px",
           margin: "20px auto",
+          border: "solid white 2px",
+          boxsizing: "content-box",
         }}
       >
         <Map />

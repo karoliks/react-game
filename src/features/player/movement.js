@@ -119,11 +119,22 @@ export default function handleMovement(player) {
     return;
   }
 
-  function startFarmerTalk() {
+  function toggleFarmerTalk() {
+    const oldShow = store.getState().modal.show;
+
     store.dispatch({
       type: "SHOW_MODAL",
       payload: {
-        show: true,
+        show: !oldShow,
+      },
+    });
+  }
+
+  function stopFarmerTalk() {
+    store.dispatch({
+      type: "SHOW_MODAL",
+      payload: {
+        show: false,
       },
     });
   }
@@ -137,13 +148,20 @@ export default function handleMovement(player) {
     const currentTile = tiles[y][x];
 
     switch (currentTile) {
+      case 0:
+        stopFarmerTalk();
+        break;
       case 1:
         changeWorld();
+        stopFarmerTalk();
         break;
       case 2:
-        startFarmerTalk();
+        toggleFarmerTalk();
+        break;
       case 4:
         openChest();
+        stopFarmerTalk();
+        break;
       default:
         return;
     }

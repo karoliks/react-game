@@ -23,6 +23,8 @@ function getTileSprite(type) {
       return "river";
     case 8:
       return "farmer"; // bygge båt med snake?
+    case 9:
+      return "downsign";
   }
 }
 
@@ -62,7 +64,6 @@ function Map(props) {
         left: "0px",
         width: "800px",
         height: "400px",
-        border: "4px solid white",
       }}
     >
       {props.tiles.map((row) => (

@@ -4,10 +4,10 @@ import store from "../../config/store";
 import "./styles.css";
 
 function Modal({ show }) {
-  const showHideClassName = show ? "modal display-block" : "modal display-none";
-
+  const showHideClassName = show ? " display-block" : " display-none";
+  const name = "Jim";
   const message =
-    "Howdy! I can build a boat to help you cross the river if you give me 50 coins";
+    "Hey there! I can build a boat to help you cross the river if you give me 50 coins";
 
   function handleClose() {
     store.dispatch({
@@ -21,8 +21,17 @@ function Modal({ show }) {
   return (
     <div className={showHideClassName}>
       <section className="modal-main">
-        {message}
-        <button onClick={handleClose}>Ok</button>
+        <div
+          className="big-farmer"
+          style={{
+            height: "60px",
+            width: "60px",
+          }}
+        ></div>
+        <div className="message-section">
+          <h4 style={{ margin: 0 }}>{name}</h4>
+          <p style={{ margin: 0 }}>{message}</p>
+        </div>
       </section>
     </div>
   );

@@ -36,3 +36,8 @@
   background-image: url("/tiles/farmer.png");
   background-size: 40px 40px;
 }
+
+.downsign {
+  background-image: url("/tiles/downsign.png");
+  background-size: 40px 40px;
+}
