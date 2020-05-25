@@ -41,3 +41,8 @@
   background-image: url("/tiles/downsign.png");
   background-size: 40px 40px;
 }
+
+.coins {
+  background-image: url("/tiles/coins.png");
+  background-size: 40px 40px;
+}

@@ -9,15 +9,6 @@ function Modal({ show }) {
   const message =
     "Hey there! I can build a boat to help you cross the river if you give me 50 coins";
 
-  function handleClose() {
-    store.dispatch({
-      type: "SHOW_MODAL",
-      payload: {
-        show: false,
-      },
-    });
-  }
-
   return (
     <div className={showHideClassName}>
       <section className="modal-main">

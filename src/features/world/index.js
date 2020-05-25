@@ -5,6 +5,7 @@ import store from "../../config/store";
 import Player from "../player";
 import Map from "../map";
 import Modal from "../modal";
+import Stats from "../stats";
 
 import { tiles0 } from "../../data/maps/0";
 import { tiles1 } from "../../data/maps/1";
@@ -34,6 +35,7 @@ function World(props) {
         <Map />
         <Player />
         <Modal />
+        <Stats />
       </div>
     </div>
   );

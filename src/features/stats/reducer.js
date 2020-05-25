@@ -1,0 +1,16 @@
+const initialState = {
+  coins: 0,
+};
+
+const statsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "UPDATE_COINS":
+      return {
+        ...action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export default statsReducer;
