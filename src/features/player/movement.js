@@ -162,6 +162,8 @@ export default function handleMovement(player) {
         openChest();
         stopFarmerTalk();
         break;
+      case 10:
+        startGame();
       default:
         return;
     }
