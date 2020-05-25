@@ -2,11 +2,13 @@ import { createStore, combineReducers } from "redux";
 import playerReducer from "../features/player/reducer";
 import mapReducer from "../features/map/reducer";
 import worldReducer from "../features/world/reducer";
+import modalReducer from "../features/modal/reducer";
 
 const rootReducer = combineReducers({
   player: playerReducer,
   map: mapReducer,
   world: worldReducer,
+  modal: modalReducer,
 });
 
 const store = createStore(

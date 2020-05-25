@@ -9,6 +9,8 @@ function getTileSprite(type) {
       return "grass";
     case 1:
       return "hole";
+    case 2:
+      return "talk";
     case 3:
       return "tree";
     case 4:
@@ -17,6 +19,10 @@ function getTileSprite(type) {
       return "rock";
     case 6:
       return "tree";
+    case 7:
+      return "river";
+    case 8:
+      return "farmer"; // bygge båt med snake?
   }
 }
 

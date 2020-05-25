@@ -26,3 +26,13 @@
   background-image: url("/tiles/hole.png");
   background-size: 40px 40px;
 }
+
+.river {
+  background-image: url("/tiles/river.png");
+  background-size: 40px 40px;
+}
+
+.farmer {
+  background-image: url("/tiles/farmer.png");
+  background-size: 40px 40px;
+}

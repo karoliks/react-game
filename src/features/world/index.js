@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import Player from "../player";
 import Map from "../map";
+import Modal from "../modal";
 
 import { tiles0 } from "../../data/maps/0";
 import { tiles1 } from "../../data/maps/1";
@@ -31,6 +32,7 @@ function World(props) {
       >
         <Map />
         <Player />
+        <Modal />
       </div>
     </div>
   );

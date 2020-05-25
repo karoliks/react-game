@@ -88,9 +88,44 @@ export default function handleMovement(player) {
     });
   }
 
+  // talk to the redux-store so that game can begin
+  function startGame() {
+    const oldMapNum = store.getState().world.mapNum;
+
+    store.dispatch({
+      type: "START_GAME",
+      payload: {
+        mapNum: oldMapNum,
+        gamePlaying: true,
+      },
+    });
+  }
+
+  // talk to the redux-store so that game can begin
+  function endGame() {
+    const oldMapNum = store.getState().world.mapNum;
+
+    store.dispatch({
+      type: "END_GAME",
+      payload: {
+        mapNum: oldMapNum,
+        gamePlaying: false,
+      },
+    });
+  }
+
   function openChest() {
     // TODO
     return;
+  }
+
+  function startFarmerTalk() {
+    store.dispatch({
+      type: "SHOW_MODAL",
+      payload: {
+        show: true,
+      },
+    });
   }
 
   // check what space means in the current position
@@ -104,6 +139,9 @@ export default function handleMovement(player) {
     switch (currentTile) {
       case 1:
         changeWorld();
+        break;
+      case 2:
+        startFarmerTalk();
       case 4:
         openChest();
       default:
