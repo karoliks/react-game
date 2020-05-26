@@ -6,6 +6,7 @@ import Player from "../player";
 import Map from "../map";
 import Modal from "../modal";
 import Stats from "../stats";
+import Game from "../game";
 
 import { tiles0 } from "../../data/maps/0";
 import { tiles1 } from "../../data/maps/1";
@@ -36,6 +37,7 @@ function World(props) {
         <Player />
         <Modal />
         <Stats />
+        <Game />
       </div>
     </div>
   );

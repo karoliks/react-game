@@ -90,26 +90,26 @@ export default function handleMovement(player) {
 
   // talk to the redux-store so that game can begin
   function startGame() {
-    const oldMapNum = store.getState().world.mapNum;
+    const oldGameNum = store.getState().game.currentGame;
 
     store.dispatch({
       type: "START_GAME",
       payload: {
-        mapNum: oldMapNum,
         gamePlaying: true,
+        currentGame: oldGameNum,
       },
     });
   }
 
   // talk to the redux-store so that game can begin
   function endGame() {
-    const oldMapNum = store.getState().world.mapNum;
+    const oldGameNum = store.getState().game.currentGame;
 
     store.dispatch({
       type: "END_GAME",
       payload: {
-        mapNum: oldMapNum,
         gamePlaying: false,
+        currentGame: oldGameNum,
       },
     });
   }
@@ -171,6 +171,11 @@ export default function handleMovement(player) {
 
   // translate keycodes to directions
   function handleKeyDown(e) {
+    const gamePlaying = store.getState().game.gamePlaying;
+    // if a game is currently playing the sprite should not be able to move
+    if (gamePlaying) {
+      return;
+    }
     e.preventDefault();
     switch (e.keyCode) {
       case 32:

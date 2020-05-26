@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import store from "../../../config/store";
+
 import Snake from "./snake";
 import Food from "./food";
 import "./styles.css";
@@ -12,7 +14,7 @@ const getRandomCoordinates = () => {
   return [x, y];
 };
 
-function SnakeGame(props) {
+function SnakeGame({ startGame }) {
   // state for the game
   const [food, setFood] = useState(getRandomCoordinates());
   const [speed, setSpeed] = useState(200);
@@ -21,11 +23,33 @@ function SnakeGame(props) {
     [0, 0],
     [2, 0],
   ]);
+  const [result, setResult] = useState(2);
+  const [showResult, setShowResult] = useState(false);
+  const [gameFinished, setGameFinished] = useState(false);
+  const showHideClassName = showResult
+    ? "result-box display-block"
+    : "result-box display-none";
 
   // how to respond to the keys pressed by the user
   function handleKeyDown(e) {
     e = e || window.event;
     switch (e.keyCode) {
+      case 32:
+        // tell everything that the game is finished (if it is)
+        if (gameFinished) {
+          setGameFinished(false);
+          // const oldGameNum = store.getState().game.currentGame;
+          // store.dispatch({
+          //   type: "END_GAME",
+          //   payload: {
+          //     gamePlaying: false,
+          //     currentGame: oldGameNum,
+          //   },
+          // });
+          // console.log("gameFinished: " + gameFinished);
+          // console.log("in if");
+        }
+        return;
       case 37:
         setDirection("WEST");
         return;
@@ -46,10 +70,28 @@ function SnakeGame(props) {
     }
   }
 
+  useEffect(() => {
+    if (!gameFinished) {
+      const oldGameNum = store.getState().game.currentGame;
+      store.dispatch({
+        type: "END_GAME",
+        payload: {
+          gamePlaying: false,
+          currentGame: oldGameNum,
+        },
+      });
+      setShowResult(false);
+      console.log("gameFinished: " + gameFinished);
+      console.log("in if");
+    }
+  }, [gameFinished]);
+
   // register pressed keys
   window.addEventListener("keydown", (e) => {
-    e.preventDefault();
-    handleKeyDown(e);
+    if (startGame) {
+      e.preventDefault();
+      handleKeyDown(e);
+    }
   });
 
   // function that moves (and increases the length of) the snake
@@ -88,6 +130,9 @@ function SnakeGame(props) {
 
   // updates the snake after desired time/speed
   useEffect(() => {
+    if (!startGame || gameFinished) {
+      return;
+    }
     const interval = setInterval(() => {
       moveSnake(checkIfEat());
       checkIfOutOfBorder();
@@ -98,7 +143,10 @@ function SnakeGame(props) {
 
   // when the player loses
   function onGameOver() {
-    alert(`Game Over! Snake length is ${snakeDots.length}`);
+    // alert(`Game Over! Snake length is ${snakeDots.length}`);
+    setResult(snakeDots.length);
+    setShowResult(true);
+    setGameFinished(true);
 
     // reset values to start over
     setFood(getRandomCoordinates());
@@ -152,6 +200,10 @@ function SnakeGame(props) {
     <div className="game-area">
       <Snake snakeDots={snakeDots}></Snake>
       <Food dot={food}></Food>
+      <div className={showHideClassName}>
+        <h3>Game over!</h3>
+        <p>You were able to collect {result} coins. Well done!</p>
+      </div>
     </div>
   );
 }

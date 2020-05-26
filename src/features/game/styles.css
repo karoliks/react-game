@@ -1,0 +1,13 @@
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+.game-box {
+  display: flex;
+  box-sizing: border-box;
+  position: absolute;
+}

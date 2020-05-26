@@ -1,6 +1,5 @@
 const initialState = {
   mapNum: 1,
-  gamePlaying: false,
 };
 
 const worldReducer = (state = initialState, action) => {
@@ -9,14 +8,7 @@ const worldReducer = (state = initialState, action) => {
       return {
         ...action.payload,
       };
-    case "START_GAME":
-      return {
-        ...action.payload,
-      };
-    case "END_GAME":
-      return {
-        ...action.payload,
-      };
+
     default:
       return state;
   }
