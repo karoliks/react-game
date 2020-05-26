@@ -38,16 +38,6 @@ function SnakeGame({ startGame }) {
         // tell everything that the game is finished (if it is)
         if (gameFinished) {
           setGameFinished(false);
-          // const oldGameNum = store.getState().game.currentGame;
-          // store.dispatch({
-          //   type: "END_GAME",
-          //   payload: {
-          //     gamePlaying: false,
-          //     currentGame: oldGameNum,
-          //   },
-          // });
-          // console.log("gameFinished: " + gameFinished);
-          // console.log("in if");
         }
         return;
       case 37:
@@ -81,8 +71,6 @@ function SnakeGame({ startGame }) {
         },
       });
       setShowResult(false);
-      console.log("gameFinished: " + gameFinished);
-      console.log("in if");
     }
   }, [gameFinished]);
 
@@ -157,6 +145,17 @@ function SnakeGame({ startGame }) {
       [2, 0],
     ]);
   }
+
+  // update coins for player after finished game
+  useEffect(() => {
+    const oldCoins = store.getState().stats.coins;
+    store.dispatch({
+      type: "UPDATE_COINS",
+      payload: {
+        coins: oldCoins + result,
+      },
+    });
+  }, [result]);
 
   // checks if the snake is trying to cross the border
   function checkIfOutOfBorder() {
