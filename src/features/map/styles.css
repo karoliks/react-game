@@ -12,7 +12,11 @@
 }
 
 .tree {
-  background-image: url("/tiles/tree.png");
+  background-image: url("/tiles/round-tree.png");
+  background-size: 40px 40px;
+}
+.tree-forest {
+  background-image: url("/tiles/tree-forest.png");
   background-size: 40px 40px;
 }
 
@@ -32,6 +36,22 @@
   background-size: 40px 40px;
 }
 
+.river-down-to-right {
+  background-image: url("/tiles/river-down-to-right.png");
+  background-size: 40px 40px;
+}
+.river-left-to-down {
+  background-image: url("/tiles/river-left-to-down.png");
+  background-size: 40px 40px;
+}
+.river-horiz {
+  background-image: url("/tiles/river-horiz.png");
+  background-size: 40px 40px;
+}
+.bridge {
+  background-image: url("/tiles/bridge.png");
+  background-size: 40px 40px;
+}
 .farmer {
   background-image: url("/tiles/farmer.png");
   background-size: 40px 40px;

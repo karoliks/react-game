@@ -15,18 +15,26 @@ function getTileSprite(type) {
       return "tree";
     case 4:
       return "chest";
+    case 5:
+      return "bridge";
     case 10:
       return "coins";
-    case 15:
+    case 115:
       return "rock";
-    case 16:
+    case 116:
       return "tree";
-    case 17:
+    case 117:
       return "river";
-    case 18:
+    case 118:
       return "farmer"; // bygge båt med snake?
-    case 19:
+    case 119:
       return "downsign";
+    case 120:
+      return "river-down-to-right";
+    case 121:
+      return "river-left-to-down";
+    case 122:
+      return "river-horiz";
   }
 }
 

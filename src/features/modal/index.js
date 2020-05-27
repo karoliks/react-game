@@ -6,7 +6,7 @@ function Modal({ show }) {
   const showHideClassName = show ? " display-block" : " display-none";
   const name = "Jim";
   const message =
-    "Hey there! I can build a boat to help you cross the river if you give me 50 coins";
+    "Hey there! I can build a bridge to help you cross the river if you give me 50 coins";
 
   return (
     <div className={showHideClassName}>

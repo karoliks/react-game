@@ -51,7 +51,7 @@ export default function handleMovement(player) {
     const y = newPos[1] / SPRITE_SIZE;
     const x = newPos[0] / SPRITE_SIZE;
     const nextTile = tiles[y][x];
-    return nextTile <= 10;
+    return nextTile <= 100;
   }
 
   // Move sprite to desired location
