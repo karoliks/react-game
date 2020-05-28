@@ -13,6 +13,8 @@ export default function handleMovement(player) {
         return [oldPos[0], oldPos[1] - SPRITE_SIZE];
       case "SOUTH":
         return [oldPos[0], oldPos[1] + SPRITE_SIZE];
+      default:
+        return oldPos;
     }
   }
 
@@ -37,6 +39,8 @@ export default function handleMovement(player) {
         return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 2}px`;
       case "NORTH":
         return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 3}px`;
+      default:
+        return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 0}px`;
     }
   }
 
@@ -126,6 +130,7 @@ export default function handleMovement(player) {
       type: "SHOW_MODAL",
       payload: {
         show: !oldShow,
+        chosenAnswer: -1,
       },
     });
   }
@@ -135,6 +140,7 @@ export default function handleMovement(player) {
       type: "SHOW_MODAL",
       payload: {
         show: false,
+        chosenAnswer: -1,
       },
     });
   }
@@ -164,6 +170,7 @@ export default function handleMovement(player) {
         break;
       case 10:
         startGame();
+        break;
       default:
         return;
     }
@@ -189,12 +196,16 @@ export default function handleMovement(player) {
       case 40:
         return attemtMove("SOUTH");
       default:
-        console.log(e.keyCode);
+        return;
+      //console.log(e.keyCode);
     }
   }
 
   window.addEventListener("keydown", (e) => {
-    handleKeyDown(e);
+    const modalIsShowing = store.getState().modal.show;
+    if (!modalIsShowing) {
+      handleKeyDown(e);
+    }
   });
 
   return player;

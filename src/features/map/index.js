@@ -35,6 +35,10 @@ function getTileSprite(type) {
       return "river-left-to-down";
     case 122:
       return "river-horiz";
+    case 123:
+      return "tree-forest";
+    default:
+      return;
   }
 }
 
@@ -58,8 +62,8 @@ function MapRow(props) {
         height: SPRITE_SIZE,
       }}
     >
-      {props.tiles.map((tile) => (
-        <MapTile tile={tile} />
+      {props.tiles.map((tile, i) => (
+        <MapTile tile={tile} key={i} />
       ))}
     </div>
   );
@@ -76,8 +80,8 @@ function Map(props) {
         height: "400px",
       }}
     >
-      {props.tiles.map((row) => (
-        <MapRow tiles={row} />
+      {props.tiles.map((row, i) => (
+        <MapRow tiles={row} key={i} />
       ))}
     </div>
   );

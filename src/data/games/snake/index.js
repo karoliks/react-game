@@ -56,7 +56,8 @@ function SnakeGame({ startGame }) {
 
         return;
       default:
-        console.log(e.keyCode);
+        //console.log(e.keyCode);
+        return;
     }
   }
 
