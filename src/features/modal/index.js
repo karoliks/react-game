@@ -34,11 +34,12 @@ function Modal({ show, character }) {
         }
         setSelectedOption(0);
       } else if (event.code === "ArrowDown" || event.code === "ArrowRight") {
-        setSelectedOption((selectedOption + 1) % answers.length);
+        setSelectedOption((selectedOption + 1) % character.answers.length);
       } else if (event.code === "ArrowUp" || event.code === "ArrowLeft") {
         // hacky way since javascript-modulo doesnt behave as I want it to
         setSelectedOption(
-          (selectedOption + answers.length - 1) % answers.length
+          (selectedOption + character.answers.length - 1) %
+            character.answers.length
         );
       }
     }
@@ -52,7 +53,7 @@ function Modal({ show, character }) {
         document.removeEventListener("keydown", listener);
       };
     }
-  }, [answers, selectedOption]);
+  }, [answers, character.answers.length, selectedOption]);
 
   return (
     <div className={showHideClassName}>

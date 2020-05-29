@@ -7,6 +7,7 @@ function Jim() {
   );
   const [answers, setAnswers] = useState(["Yes, please do!", "Not now"]);
 
+  // maybe it should be connected to the users answer instead?
   const bridgeShouldShow = store.getState().world.unlockedStuff.bridge;
 
   useEffect(() => {
