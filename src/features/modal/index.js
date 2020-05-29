@@ -3,7 +3,6 @@ import store from "../../config/store";
 
 import { connect } from "react-redux";
 import "./styles.css";
-import { tiles2 } from "../../data/maps/2";
 
 // do not think this part is ideal, but it works:)
 
@@ -12,7 +11,7 @@ function Modal({ show }) {
   const name = "Jim";
   const message =
     "Hey there! I can build a bridge to help you cross the river if you give me 50 coins";
-  const answers = ["Yes", "No", "Maybe"];
+  const answers = ["Yes, please do!", "Not now"];
   const [selectedOption, _setSelectedOption] = useState(0);
 
   const selectedOptionRef = React.useRef(selectedOption);
@@ -32,10 +31,12 @@ function Modal({ show }) {
             chosenAnswer: selectedOptionRef.current,
           },
         });
-        store.dispatch({
-          type: "SHOW_BRIDGE",
-          payload: true,
-        });
+        if (selectedOptionRef.current === 0) {
+          store.dispatch({
+            type: "SHOW_BRIDGE",
+            payload: true,
+          });
+        }
         setSelectedOption(0);
       } else if (event.code === "ArrowDown" || event.code === "ArrowRight") {
         setSelectedOption((selectedOption + 1) % answers.length);
@@ -87,11 +88,11 @@ function Modal({ show }) {
                     type="radio"
                     id={ans}
                     name="answer"
-                    checked={selectedOption == i}
+                    checked={selectedOption === i}
                     onChange={() => {}}
                     key={i}
                   />
-                  {ans} {i}
+                  {ans}
                 </label>
               </div>
             ))}

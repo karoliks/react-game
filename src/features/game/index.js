@@ -7,8 +7,6 @@ function Game({ gamePlaying }) {
   // ensures that the game only is showing when it is supposed to
   const showHideClassName = gamePlaying ? "display-block" : "display-none";
 
-  const games = [Snake];
-
   return (
     <div className={showHideClassName}>
       <Snake startGame={gamePlaying}></Snake>

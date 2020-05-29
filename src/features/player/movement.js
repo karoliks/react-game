@@ -103,19 +103,6 @@ export default function handleMovement(player) {
     });
   }
 
-  // talk to the redux-store so that game can begin
-  function endGame() {
-    const oldGameNum = store.getState().game.currentGame;
-
-    store.dispatch({
-      type: "END_GAME",
-      payload: {
-        gamePlaying: false,
-        currentGame: oldGameNum,
-      },
-    });
-  }
-
   function openChest() {
     // TODO
     return;
