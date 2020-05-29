@@ -3,6 +3,7 @@ import store from "../../config/store";
 
 import { connect } from "react-redux";
 import "./styles.css";
+import { tiles2 } from "../../data/maps/2";
 
 // do not think this part is ideal, but it works:)
 
@@ -30,6 +31,10 @@ function Modal({ show }) {
             show: false,
             chosenAnswer: selectedOptionRef.current,
           },
+        });
+        store.dispatch({
+          type: "SHOW_BRIDGE",
+          payload: true,
         });
         setSelectedOption(0);
       } else if (event.code === "ArrowDown" || event.code === "ArrowRight") {

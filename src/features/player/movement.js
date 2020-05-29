@@ -86,9 +86,7 @@ export default function handleMovement(player) {
 
     store.dispatch({
       type: "CHANGE_WORLD",
-      payload: {
-        mapNum: (oldMapNum + 1) % 3,
-      },
+      payload: (oldMapNum + 1) % 3,
     });
   }
 

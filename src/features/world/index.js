@@ -13,7 +13,7 @@ import { tiles1 } from "../../data/maps/1";
 import { tiles2 } from "../../data/maps/2";
 
 function World(props) {
-  const tiles = [tiles0, tiles1, tiles2];
+  const tiles = [tiles0, tiles1(), tiles2];
 
   store.dispatch({
     type: "ADD_TILES",
