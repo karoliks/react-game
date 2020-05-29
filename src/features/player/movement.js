@@ -129,16 +129,6 @@ export default function handleMovement(player) {
     console.log("bottoum of togglgeguardtalk");
   }
 
-  function stopFarmerTalk() {
-    store.dispatch({
-      type: "HIDE_MODAL",
-      payload: {
-        show: false,
-        chosenAnswer: -1,
-      },
-    });
-  }
-
   // check what space means in the current position
   function handleSpace() {
     const oldPos = store.getState().player.position;

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import store from "../../config/store";
-import { Jim } from "../../data/characters/jim";
 
 import { connect } from "react-redux";
 import "./styles.css";
@@ -19,41 +18,45 @@ function Modal({ show, character }) {
   };
 
   // connects key-pressing to actions
-  useEffect(() => {
-    function handleKeyDown(event) {
-      if (event.code === "Enter" || event.code === "NumpadEnter") {
-        store.dispatch({
-          type: "UPDATE_ANSWER",
-          payload: selectedOptionRef.current,
-        });
-        if (selectedOptionRef.current === 0) {
+  useEffect(
+    () => {
+      function handleKeyDown(event) {
+        if (event.code === "Enter" || event.code === "NumpadEnter") {
           store.dispatch({
-            type: "SHOW_BRIDGE",
-            payload: true,
+            type: "UPDATE_ANSWER",
+            payload: selectedOptionRef.current,
           });
+          if (selectedOptionRef.current === 0) {
+            store.dispatch({
+              type: "SHOW_BRIDGE",
+              payload: true,
+            });
+          }
+          setSelectedOption(0);
+        } else if (event.code === "ArrowDown" || event.code === "ArrowRight") {
+          setSelectedOption((selectedOption + 1) % character.answers.length);
+        } else if (event.code === "ArrowUp" || event.code === "ArrowLeft") {
+          // hacky way since javascript-modulo doesnt behave as I want it to
+          setSelectedOption(
+            (selectedOption + character.answers.length - 1) %
+              character.answers.length
+          );
         }
-        setSelectedOption(0);
-      } else if (event.code === "ArrowDown" || event.code === "ArrowRight") {
-        setSelectedOption((selectedOption + 1) % character.answers.length);
-      } else if (event.code === "ArrowUp" || event.code === "ArrowLeft") {
-        // hacky way since javascript-modulo doesnt behave as I want it to
-        setSelectedOption(
-          (selectedOption + character.answers.length - 1) %
-            character.answers.length
-        );
       }
-    }
-    // only interact with the modal if it is showing
-    if (store.getState().modal.show) {
-      const listener = (event) => {
-        handleKeyDown(event);
-      };
-      document.addEventListener("keydown", listener);
-      return () => {
-        document.removeEventListener("keydown", listener);
-      };
-    }
-  }, [answers, character.answers.length, selectedOption]);
+      // only interact with the modal if it is showing
+      if (store.getState().modal.show) {
+        const listener = (event) => {
+          handleKeyDown(event);
+        };
+        document.addEventListener("keydown", listener);
+        return () => {
+          document.removeEventListener("keydown", listener);
+        };
+      }
+    },
+    // Why do I need answers here? Don't think I use it:S
+    [answers, character.answers.length, selectedOption]
+  );
 
   return (
     <div className={showHideClassName}>
