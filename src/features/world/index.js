@@ -12,14 +12,23 @@ import { tiles0 } from "../../data/maps/0";
 import { tiles1 } from "../../data/maps/1";
 import { tiles2 } from "../../data/maps/2";
 
+import { Jim } from "../../data/characters/jim";
+import { Guard } from "../../data/characters/guard";
+
 function World(props) {
   const tiles = [tiles0, tiles1(), tiles2];
+  const characters = { jim: Jim(), guard: Guard };
 
   store.dispatch({
     type: "ADD_TILES",
     payload: {
       tiles: tiles[props.mapNum],
     },
+  });
+
+  store.dispatch({
+    type: "SET_VALUES_FOR_CHARACTER",
+    payload: characters[props.currentCharacter],
   });
   return (
     <div>

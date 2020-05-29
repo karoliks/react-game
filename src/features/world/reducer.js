@@ -1,6 +1,7 @@
 const initialState = {
   mapNum: 1,
   unlockedStuff: { bridge: false },
+  currentCharacter: "jim",
 };
 
 const worldReducer = (state = initialState, action) => {
@@ -14,6 +15,12 @@ const worldReducer = (state = initialState, action) => {
       return {
         ...state,
         unlockedStuff: { ...state.unlockedStuff, bridge: action.payload },
+      };
+    case "SET_CURRENT_CHARACTER":
+      return {
+        ...state,
+
+        currentCharacter: action.payload,
       };
 
     default:

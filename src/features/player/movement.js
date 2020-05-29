@@ -109,20 +109,29 @@ export default function handleMovement(player) {
   }
 
   function toggleFarmerTalk() {
-    const oldShow = store.getState().modal.show;
-
+    store.dispatch({
+      type: "SET_CURRENT_CHARACTER",
+      payload: "jim",
+    });
     store.dispatch({
       type: "SHOW_MODAL",
-      payload: {
-        show: !oldShow,
-        chosenAnswer: -1,
-      },
     });
+  }
+
+  function toggleGuardTalk() {
+    store.dispatch({
+      type: "SET_CURRENT_CHARACTER",
+      payload: "guard",
+    });
+    store.dispatch({
+      type: "SHOW_MODAL",
+    });
+    console.log("bottoum of togglgeguardtalk");
   }
 
   function stopFarmerTalk() {
     store.dispatch({
-      type: "SHOW_MODAL",
+      type: "HIDE_MODAL",
       payload: {
         show: false,
         chosenAnswer: -1,
@@ -137,27 +146,34 @@ export default function handleMovement(player) {
     const y = oldPos[1] / SPRITE_SIZE;
     const x = oldPos[0] / SPRITE_SIZE;
     const currentTile = tiles[y][x];
+    const tileAbove = tiles[y - 1][x];
 
     switch (currentTile) {
-      case 0:
-        stopFarmerTalk();
-        break;
       case 1:
         changeWorld();
-        stopFarmerTalk();
-        break;
-      case 2:
-        toggleFarmerTalk();
         break;
       case 4:
         openChest();
-        stopFarmerTalk();
         break;
       case 10:
         startGame();
         break;
       default:
-        return;
+        break;
+    }
+    console.log(`currentTile: ${currentTile}`);
+    console.log(`tileAbove: ${tileAbove}`);
+
+    // if the player is below a talking person
+    switch (tileAbove) {
+      case 118:
+        toggleFarmerTalk();
+        break;
+      case 124:
+        toggleGuardTalk();
+        break;
+      default:
+        break;
     }
   }
 

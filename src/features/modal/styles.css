@@ -27,6 +27,13 @@
   background-repeat: no-repeat;
 }
 
+.big-guard {
+  display: inline-flex;
+  background-image: url("/characters/bigguard.png");
+  background-size: 60px 60px;
+  background-repeat: no-repeat;
+}
+
 .message-section {
   max-width: 400px;
   margin: auto;

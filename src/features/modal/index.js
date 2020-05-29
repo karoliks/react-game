@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import store from "../../config/store";
+import { Jim } from "../../data/characters/jim";
 
 import { connect } from "react-redux";
 import "./styles.css";
 
 // do not think this part is ideal, but it works:)
 
-function Modal({ show }) {
+function Modal({ show, character }) {
   const showHideClassName = show ? " display-block" : " display-none";
-  const name = "Jim";
-  const message =
-    "Hey there! I can build a bridge to help you cross the river if you give me 50 coins";
   const answers = ["Yes, please do!", "Not now"];
   const [selectedOption, _setSelectedOption] = useState(0);
 
@@ -26,10 +24,7 @@ function Modal({ show }) {
       if (event.code === "Enter" || event.code === "NumpadEnter") {
         store.dispatch({
           type: "UPDATE_ANSWER",
-          payload: {
-            show: false,
-            chosenAnswer: selectedOptionRef.current,
-          },
+          payload: selectedOptionRef.current,
         });
         if (selectedOptionRef.current === 0) {
           store.dispatch({
@@ -63,14 +58,14 @@ function Modal({ show }) {
     <div className={showHideClassName}>
       <section className="modal-main">
         <div
-          className="big-farmer"
+          className={character.className}
           style={{
             height: "60px",
             width: "60px",
           }}
         ></div>
         <div className="message-section">
-          <h4 style={{ margin: 0 }}>{name}</h4>
+          <h4 style={{ margin: 0 }}>{character.name}</h4>
           <p
             style={{
               margin: 0,
@@ -78,10 +73,10 @@ function Modal({ show }) {
               webkitfontsmoothing: "none",
             }}
           >
-            {message}
+            {character.message}
           </p>
           <form>
-            {answers.map((ans, i) => (
+            {character.answers.map((ans, i) => (
               <div key={i}>
                 <label htmlFor={ans}>
                   <input

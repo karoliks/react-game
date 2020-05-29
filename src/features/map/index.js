@@ -37,6 +37,8 @@ function getTileSprite(type) {
       return "river-horiz";
     case 123:
       return "tree-forest";
+    case 124:
+      return "guard";
     default:
       return;
   }
