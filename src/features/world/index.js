@@ -6,6 +6,8 @@ import Player from "../player";
 import Map from "../map";
 import Modal from "../modal";
 import Stats from "../stats";
+import InfoBox from "../infobox";
+
 import Game from "../game";
 
 import { tiles0 } from "../../data/maps/0";
@@ -44,6 +46,7 @@ function World(props) {
       >
         <Map />
         <Player />
+        <InfoBox />
         <Modal />
         <Stats />
         <Game />

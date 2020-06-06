@@ -5,6 +5,7 @@ import worldReducer from "../features/world/reducer";
 import modalReducer from "../features/modal/reducer";
 import statsReducer from "../features/stats/reducer";
 import gameReducer from "../features/game/reducer";
+import infoboxReducer from "../features/infobox/reducer";
 
 const rootReducer = combineReducers({
   player: playerReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   modal: modalReducer,
   stats: statsReducer,
   game: gameReducer,
+  infobox: infoboxReducer,
 });
 
 const store = createStore(

@@ -1,0 +1,40 @@
+.infobox-main {
+  display: flex;
+  box-sizing: border-box;
+  position: absolute;
+  flex-direction: column;
+  width: 400px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 30px;
+  padding: 20px;
+
+  background: rgb(0, 21, 143);
+  border: 2px solid yellow;
+  height: 300px;
+  color: white;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+.message-section {
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+}
+.chest-milestone {
+  height: 120px;
+  width: 120px;
+  background-image: url("/milestones/money-chest-milestone.png");
+  background-size: 120px 120px;
+  margin: auto;
+
+  background-repeat: no-repeat;
+}

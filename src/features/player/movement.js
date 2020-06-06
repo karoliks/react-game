@@ -103,9 +103,10 @@ export default function handleMovement(player) {
     });
   }
 
-  function openChest() {
-    // TODO
-    return;
+  function toggleOpenChest() {
+    store.dispatch({
+      type: "TOGGLE_INFOBOX",
+    });
   }
 
   function toggleFarmerTalk() {
@@ -143,7 +144,7 @@ export default function handleMovement(player) {
         changeWorld();
         break;
       case 4:
-        openChest();
+        toggleOpenChest();
         break;
       case 10:
         startGame();
