@@ -7,6 +7,8 @@ const Guard = {
     "you ar not a very good guard",
     "okidoki",
   ],
+  storeChangeIfZero: { type: "DEFAULT", payload: true },
+
   className: "big-guard",
 };
 

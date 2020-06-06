@@ -28,10 +28,11 @@ function Modal({ show, character }) {
           });
           if (selectedOptionRef.current === 0) {
             store.dispatch({
-              type: "SHOW_BRIDGE",
-              payload: true,
+              type: character.storeChangeIfZero.type,
+              payload: character.storeChangeIfZero.payload,
             });
           }
+          // }
           setSelectedOption(0);
         } else if (event.code === "ArrowDown" || event.code === "ArrowRight") {
           setSelectedOption((selectedOption + 1) % character.answers.length);
@@ -55,7 +56,13 @@ function Modal({ show, character }) {
       }
     },
     // Why do I need answers here? Don't think I use it:S
-    [answers, character.answers.length, selectedOption]
+    [
+      character.answers.length,
+      character.storeChangeIfZero.payload,
+      character.storeChangeIfZero.type,
+      selectedOption,
+      answers,
+    ]
   );
 
   return (

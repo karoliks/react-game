@@ -2,7 +2,13 @@ const initialState = {
   mapNum: 1,
   unlockedStuff: { bridge: false },
   currentCharacter: "jim",
+  historyProgress: {
+    jim: { bridgeCreated: false },
+    guard: { chestOpened: false },
+  },
 };
+
+// things should probably not be updated here before
 
 const worldReducer = (state = initialState, action) => {
   switch (action.type) {
