@@ -1,5 +1,5 @@
 const initialState = {
-  coins: 0,
+  coins: 53,
 };
 
 const statsReducer = (state = initialState, action) => {
@@ -7,6 +7,11 @@ const statsReducer = (state = initialState, action) => {
     case "UPDATE_COINS":
       return {
         ...action.payload,
+      };
+    case "REDUCE_COINS":
+      return {
+        ...state,
+        coins: state.coins - action.payload,
       };
     default:
       return state;

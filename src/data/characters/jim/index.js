@@ -2,7 +2,7 @@ import store from "../../../config/store";
 import { useState, useEffect } from "react";
 // have to fix the money
 function Jim() {
-  const moneyCharge = 50;
+  const [moneyCharge, setMoneyCharge] = useState(50);
 
   const [message, setMessage] = useState(
     "Hey there! I can build a bridge to help you cross the river if you give me 50 coins"
@@ -32,6 +32,7 @@ function Jim() {
     if (bridgeShouldShow) {
       setMessage("The bridge is finished! Happy to help!");
       setAnswers([]);
+      setMoneyCharge(0);
     }
   }, [bridgeShouldShow]);
 

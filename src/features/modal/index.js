@@ -31,6 +31,10 @@ function Modal({ show, character }) {
               type: character.storeChangeIfZero.type,
               payload: character.storeChangeIfZero.payload,
             });
+            store.dispatch({
+              type: "REDUCE_COINS",
+              payload: character.moneyCharge,
+            });
           }
           // }
           setSelectedOption(0);
