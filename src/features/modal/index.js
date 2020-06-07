@@ -66,6 +66,7 @@ function Modal({ show, character }) {
       character.storeChangeIfZero.type,
       selectedOption,
       answers,
+      character.moneyCharge,
     ]
   );
 

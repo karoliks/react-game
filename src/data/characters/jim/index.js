@@ -32,9 +32,14 @@ function Jim() {
     if (bridgeShouldShow) {
       setMessage("The bridge is finished! Happy to help!");
       setAnswers([]);
-      setMoneyCharge(0);
     }
   }, [bridgeShouldShow]);
+
+  // useEffect(() => {
+  //   if (answers.length === 0) {
+  //     setMoneyCharge(0);
+  //   }
+  // }, [answers.length]);
 
   return {
     name: "Jim",
