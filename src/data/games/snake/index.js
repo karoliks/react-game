@@ -19,11 +19,8 @@ function SnakeGame({ startGame }) {
   const [food, setFood] = useState(getRandomCoordinates());
   const [speed, setSpeed] = useState(200);
   const [direction, setDirection] = useState("EAST");
-  const [snakeDots, setSnakeDots] = useState([
-    [0, 0],
-    [2, 0],
-  ]);
-  const [result, setResult] = useState(2);
+  const [snakeDots, setSnakeDots] = useState([[0, 0]]);
+  const [result, setResult] = useState(0);
   const [showResult, setShowResult] = useState(false);
   const [gameFinished, setGameFinished] = useState(false);
   const showHideClassName = showResult
@@ -143,7 +140,7 @@ function SnakeGame({ startGame }) {
     setDirection("EAST");
     setSnakeDots([
       [0, 0],
-      [2, 0],
+      //[2, 0],
     ]);
   }
 
