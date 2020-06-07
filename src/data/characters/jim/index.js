@@ -2,7 +2,7 @@ import store from "../../../config/store";
 import { useState, useEffect } from "react";
 // have to fix the money
 function Jim() {
-  const moneyCharge = 10;
+  const moneyCharge = 50;
 
   const [message, setMessage] = useState(
     "Hey there! I can build a bridge to help you cross the river if you give me 50 coins"
@@ -13,7 +13,7 @@ function Jim() {
     payload: false,
   });
   const [answers, setAnswers] = useState([
-    "Good to know, I will come back when I have enough money",
+    "Ok, I'll be back when I have enough money",
   ]);
 
   // maybe it should be connected to the users answer instead?

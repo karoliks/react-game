@@ -39,6 +39,7 @@ function getTileSprite(type) {
       return "tree-forest";
     case 124:
       return "guard";
+
     default:
       return;
   }
