@@ -9,7 +9,7 @@ function InfoBox({ show, type }) {
     <div className={showHideClassName}>
       <section className="infobox-main">
         <div className={type.className}></div>
-        <div className="message-section">
+        <div className="message-section-info">
           <h2 style={{ margin: 0 }}>{type.title}</h2>
           <p>{type.text}</p>
         </div>
