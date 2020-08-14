@@ -53,7 +53,6 @@ function SnakeGame({ startGame }) {
 
         return;
       default:
-        //console.log(e.keyCode);
         return;
     }
   }
@@ -140,7 +139,6 @@ function SnakeGame({ startGame }) {
     setDirection("EAST");
     setSnakeDots([
       [0, 0],
-      //[2, 0],
     ]);
   }
 
