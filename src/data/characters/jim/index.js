@@ -12,9 +12,10 @@ function Jim() {
     type: "SHOW_BRIDGE",
     payload: false,
   });
-  const [answers, setAnswers] = useState([
-    "Ok, I'll be back when I have enough money",
-  ]);
+  const [answers, setAnswers] = useState({
+    answers: ["Ok, I'll be back when I have enough money"],
+    chargeAtZero: false,
+  });
 
   // maybe it should be connected to the users answer instead?
   const bridgeShouldShow = store.getState().world.unlockedStuff.bridge;
@@ -23,7 +24,10 @@ function Jim() {
   // if the user automaticly starts with enough money, the useres will be wrong. the user must change the amount in some way for it to work
   useEffect(() => {
     if (usersCurrentMoney >= moneyCharge) {
-      setAnswers(["Yes, please do!", "Not now"]);
+      setAnswers({
+        answers: ["Yes, please do!", "Not now"],
+        chargeAtZero: true,
+      });
       setStoreChangeIfZero({ type: "SHOW_BRIDGE", payload: true });
     }
   }, [usersCurrentMoney, moneyCharge]);
@@ -31,7 +35,7 @@ function Jim() {
   useEffect(() => {
     if (bridgeShouldShow) {
       setMessage("The bridge is finished! Happy to help!");
-      setAnswers([]);
+      setAnswers({ answers: [], chargeAtZero: false });
     }
   }, [bridgeShouldShow]);
 

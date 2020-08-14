@@ -8,7 +8,7 @@ import "./styles.css";
 
 function Modal({ show, character }) {
   const showHideClassName = show ? " display-block" : " display-none";
-  const answers = ["Yes, please do!", "Not now"];
+  const answers = ["Yes, please do!", "Not now"]; // should this really be here?
   const [selectedOption, _setSelectedOption] = useState(0);
 
   const selectedOptionRef = React.useRef(selectedOption);
@@ -31,20 +31,24 @@ function Modal({ show, character }) {
               type: character.storeChangeIfZero.type,
               payload: character.storeChangeIfZero.payload,
             });
-            store.dispatch({
-              type: "REDUCE_COINS",
-              payload: character.moneyCharge,
-            });
+            if (character.answers.chargeAtZero) {
+              store.dispatch({
+                type: "REDUCE_COINS",
+                payload: character.moneyCharge,
+              });
+            }
           }
           // }
           setSelectedOption(0);
         } else if (event.code === "ArrowDown" || event.code === "ArrowRight") {
-          setSelectedOption((selectedOption + 1) % character.answers.length);
+          setSelectedOption(
+            (selectedOption + 1) % character.answers.answers.length
+          );
         } else if (event.code === "ArrowUp" || event.code === "ArrowLeft") {
           // hacky way since javascript-modulo doesnt behave as I want it to
           setSelectedOption(
-            (selectedOption + character.answers.length - 1) %
-              character.answers.length
+            (selectedOption + character.answers.answers.length - 1) %
+              character.answers.answers.length
           );
         }
       }
@@ -67,6 +71,8 @@ function Modal({ show, character }) {
       selectedOption,
       answers,
       character.moneyCharge,
+      character.answers.chargeAtZero,
+      character.answers.answers.length,
     ]
   );
 
@@ -92,7 +98,7 @@ function Modal({ show, character }) {
             {character.message}
           </p>
           <form>
-            {character.answers.map((ans, i) => (
+            {character.answers.answers.map((ans, i) => (
               <div key={i}>
                 <label htmlFor={ans}>
                   <input
