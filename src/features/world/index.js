@@ -15,12 +15,8 @@ import { tiles0 } from "../../data/maps/0";
 import { tiles1 } from "../../data/maps/1";
 import { tiles2 } from "../../data/maps/2";
 
-import { Jim } from "../../data/characters/jim";
-import { Guard } from "../../data/characters/guard";
-
 function World(props) {
   const tiles = [tiles0, tiles1(), tiles2];
-  // const characters = { jim: Jim(), guard: Guard };
   const bridgeShouldShow = store.getState().world.unlockedStuff.bridge;
   const usersCurrentMoney = store.getState().stats.coins;
   const moneyCharge = store.getState().world.historyProgress["jim"][

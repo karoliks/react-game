@@ -64,16 +64,7 @@ function Modal({ show, character }) {
       }
     },
     // Why do I need answers here? Don't think I use it:S
-    [
-      // character.answers.length,
-      // character.storeChangeIfZero.payload,
-      // character.storeChangeIfZero.type,
-      selectedOption,
-      answers,
-      //   character.moneyCharge,
-      //   character.answers.chargeAtZero,
-      //   character.answers.answers.length,
-    ]
+    [selectedOption, answers]
   );
 
   return (

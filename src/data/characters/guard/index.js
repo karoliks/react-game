@@ -1,3 +1,5 @@
+// NOT IN USE
+
 const Guard = {
   name: "Guard",
   message: "Good day! I am guarding this chest. Just wanted you to know.",
