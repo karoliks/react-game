@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import store from "../../config/store";
+import { useEffect } from "react";
 
 import Player from "../player";
 import Map from "../map";
@@ -19,7 +20,28 @@ import { Guard } from "../../data/characters/guard";
 
 function World(props) {
   const tiles = [tiles0, tiles1(), tiles2];
-  const characters = { jim: Jim(), guard: Guard };
+  // const characters = { jim: Jim(), guard: Guard };
+  const bridgeShouldShow = store.getState().world.unlockedStuff.bridge;
+  const usersCurrentMoney = store.getState().stats.coins;
+  const moneyCharge = store.getState().world.historyProgress["jim"][
+    "moneyCharge"
+  ];
+
+  useEffect(() => {
+    if (usersCurrentMoney >= moneyCharge) {
+      store.dispatch({
+        type: "JIM_AFTER_ENOUGH_MONEY",
+      });
+    }
+  }, [usersCurrentMoney, moneyCharge]);
+
+  useEffect(() => {
+    if (bridgeShouldShow) {
+      store.dispatch({
+        type: "JIM_AFTER_BUILT_BRIDGE",
+      });
+    }
+  }, [bridgeShouldShow]);
 
   store.dispatch({
     type: "ADD_TILES",
@@ -30,7 +52,7 @@ function World(props) {
 
   store.dispatch({
     type: "SET_VALUES_FOR_CHARACTER",
-    payload: characters[props.currentCharacter],
+    payload: props.historyProgress[props.currentCharacter],
   });
   return (
     <div>
