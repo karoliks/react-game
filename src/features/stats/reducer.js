@@ -1,5 +1,5 @@
 const initialState = {
-  coins: 49,
+  coins: 0,
 };
 
 const statsReducer = (state = initialState, action) => {
