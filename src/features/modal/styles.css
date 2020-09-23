@@ -22,14 +22,14 @@
 
 .big-farmer {
   display: inline-flex;
-  background-image: url("/characters/bigfarmer.png");
+  background-image: url("/react-game/characters/bigfarmer.png");
   background-size: 60px 60px;
   background-repeat: no-repeat;
 }
 
 .big-guard {
   display: inline-flex;
-  background-image: url("/characters/bigguard.png");
+  background-image: url("/react-game/characters/bigguard.png");
   background-size: 60px 60px;
   background-repeat: no-repeat;
 }

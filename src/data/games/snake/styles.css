@@ -19,7 +19,7 @@
   height: 9px; */
   /* background-color: rgb(255, 187, 0); */
   /* border: 1px solid green; */
-  background-image: url("/gamestuff/game-coin.png");
+  background-image: url("/react-game/gamestuff/game-coin.png");
   z-index: 2;
 }
 
@@ -29,7 +29,7 @@
   height: 2%;
   /* background-color: red;
   border: 1px solid white; */
-  background-image: url("/gamestuff/game-coin.png");
+  background-image: url("/react-game/gamestuff/game-coin.png");
 
   z-index: 1;
 }

@@ -8,67 +8,66 @@
 }
 
 .rock {
-  /* background-image: url("/tiles/rocks2.png"); */
-  background-image: url("https://github.com/karoliks/react-game/blob/master/public/tiles/rocks2.png?raw=true");
+  background-image: url("/react-game/tiles/rocks2.png");
   background-size: 40px 40px;
 }
 
 .tree {
-  background-image: url("/tiles/round-tree.png");
+  background-image: url("/react-game/tiles/round-tree.png");
   background-size: 40px 40px;
 }
 .tree-forest {
-  background-image: url("/tiles/tree-forest.png");
+  background-image: url("/react-game/tiles/tree-forest.png");
   background-size: 40px 40px;
 }
 
 .chest {
-  background-image: url("/tiles/chest.png");
+  background-image: url("/react-game/tiles/chest.png");
   background-size: 20px 20px;
   background-repeat: no-repeat;
 }
 
 .hole {
-  background-image: url("/tiles/hole.png");
+  background-image: url("/react-game/tiles/hole.png");
   background-size: 40px 40px;
 }
 
 .river {
-  background-image: url("/tiles/river.png");
+  background-image: url("/react-game/tiles/river.png");
   background-size: 40px 40px;
 }
 
 .river-down-to-right {
-  background-image: url("/tiles/river-down-to-right.png");
+  background-image: url("/react-game/tiles/river-down-to-right.png");
   background-size: 40px 40px;
 }
 .river-left-to-down {
-  background-image: url("/tiles/river-left-to-down.png");
+  background-image: url("/react-game/tiles/river-left-to-down.png");
   background-size: 40px 40px;
 }
 .river-horiz {
-  background-image: url("/tiles/river-horiz.png");
+  background-image: url("/react-game/tiles/river-horiz.png");
   background-size: 40px 40px;
 }
 .bridge {
-  background-image: url("/tiles/bridge.png");
+  background-image: url("/react-game/tiles/bridge.png");
   background-size: 40px 40px;
 }
 .farmer {
-  background-image: url("/tiles/farmer.png");
+  background-image: url("/react-game/tiles/farmer.png");
   background-size: 40px 40px;
 }
 .guard {
-  background-image: url("/tiles/guard.png");
+  background-image: url("/react-game/tiles/guard.png");
   background-size: 40px 40px;
 }
 
 .downsign {
-  background-image: url("/tiles/downsign.png");
+  background-image: url("/react-game/tiles/downsign.png");
   background-size: 40px 40px;
 }
 
 .coins {
-  background-image: url("/tiles/coins.png");
+  background-image: url("/react-game/tiles/coins.png");
   background-size: 40px 40px;
 }
