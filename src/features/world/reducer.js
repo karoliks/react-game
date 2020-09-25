@@ -6,13 +6,13 @@ const initialState = {
     jim: {
       name: "Jim",
       message:
-        "Hey there! I can build a bridge to help you cross the river if you give me 50 coins",
+        "Hey there! I can build a bridge to help you cross the river if you give me 25 coins",
       answers: {
         answers: ["Ok, I'll be back when I have enough money"],
         chargeAtZero: false,
       },
       className: "big-farmer",
-      moneyCharge: 50,
+      moneyCharge: 25,
       storeChangeIfZero: {
         type: "SHOW_BRIDGE",
         payload: false,
