@@ -6,7 +6,13 @@ class App extends Component {
     return (
       <div>
         <World />
-        <img src="/react-game/public/Manual-RPG.png" alt="Manual" />
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <img
+            src="https://github.com/karoliks/react-game/blob/master/public/Manual-RPG.png?raw=true"
+            alt="Manual"
+            style={{ maxWidth: "100vw" }}
+          />
+        </div>
       </div>
     );
   }
