@@ -6,6 +6,7 @@ class App extends Component {
     return (
       <div>
         <World />
+        <img src="/react-game/public/Manual-RPG.png" alt="Manual" />
       </div>
     );
   }
